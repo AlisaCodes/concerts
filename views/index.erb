@@ -1,6 +1,6 @@
-<h1>Organize Your Bands</h1>
+<h1>Organize Concerts</h1>
 
-
+<h2>Add Band</h2>
 <form action="/bands" method="post">
   <div class="form-group">
     <label for="venue">Add a Band:</label>
@@ -8,6 +8,7 @@
     <button class="btn btn-primary btn-sm" name="button">Add Band</button>
 </form>
 
+<h3>Click on a Band to Add a Venue</h3>
     <% if @bands.empty? %>
         <h3>No bands!</h3>
       <% else %>
@@ -22,5 +23,28 @@
           </li>
           <% end %>
         </ul>
-
       <% end %>
+
+    <h2>Add Venue</h2>
+        <form action="/venues" method="post">
+          <div class="form-group">
+            <label for="venue">Add a Venue:</label>
+            <input class="form-control" type="text" name="location" placeholder="name e.g. Circle House">
+            <button class="btn btn-primary btn-sm" name="button">Add Venue</button>
+        </form>
+
+        <% if @venues.empty? %>
+            <h3>No Venues!</h3>
+          <% else %>
+            <ul>
+              <% @venues.each do |venue| %>
+              <li>
+                <form class="form-inline" action="/venues/delete/<%=venue.id%>" method="post">
+                  <label for=""><a href="venues/<%=venue.id%>"><%= venue.location %></a></label>
+                  <input type="hidden" name="_method" value="delete">
+                  <button class="glyphicon glyphicon-remove" name="delete"></button>
+                </form>
+              </li>
+              <% end %>
+            </ul>
+            <% end %>

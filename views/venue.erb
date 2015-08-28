@@ -1,8 +1,24 @@
-<h1><%=@ingredient.name%> is Used in:</h1>
-<ul>
-  <% @recipes.each do |recipe| %>
-    <li>
-      <a href="/recipes/<%=recipe.id%>"><%= recipe.name %></a>
-    </li>
-  <% end %>
-</ul>
+<h1><%= @band.name%> </h1>
+
+<form action="/venues" method="post">
+  <div class="form-group">
+    <label for="venue">Add a Venue:</label>
+    <input class="form-control" type="text" name="location" placeholder="name e.g. Circle House">
+    <button class="btn btn-primary btn-sm" name="button">Add Venue</button>
+</form>
+
+<% if @venues.empty? %>
+    <h3>No Venues!</h3>
+  <% else %>
+    <ul>
+      <% @venues.each do |venue| %>
+      <li>
+        <form class="form-inline" action="/venues/delete/<%=venue.id%>" method="post">
+          <label for=<%= venue.location %></label>
+          <input type="hidden" name="_method" value="delete">
+          <button class="glyphicon glyphicon-remove" name="delete"></button>
+        </form>
+      </li>
+      <% end %>
+    </ul>
+    <% end %>
