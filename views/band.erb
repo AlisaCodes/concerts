@@ -9,7 +9,7 @@
     <% end %>
   </ul>
 <% else %>
-  <h3>There are no known venues for this band. Add them from the Venues page.</h3>
+  <h3>Select a venue that the band has played:</h3>
 <% end %>
 
 <form class="" action="/bands/<%= @band.id %>/venues/add" method="post">
@@ -18,5 +18,7 @@
       <option value="<%= venue.id() %>"><%= venue.location() %></option>
     <% end %>
   </select>
-  <button>Submit</button>
+  <button>Select</button>
 </form>
+
+<a href="/">Home</a>

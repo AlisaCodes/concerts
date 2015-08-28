@@ -40,7 +40,7 @@
               <% @venues.each do |venue| %>
               <li>
                 <form class="form-inline" action="/venues/delete/<%=venue.id%>" method="post">
-                  <label for=""><a href="venues/<%=venue.id%>"><%= venue.location %></a></label>
+                  <label for=""><%= venue.location %></label>
                   <input type="hidden" name="_method" value="delete">
                   <button class="glyphicon glyphicon-remove" name="delete"></button>
                 </form>
