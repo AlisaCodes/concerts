@@ -1,0 +1,25 @@
+
+<h1>Add Venues</h1>
+
+<form action="/venues" method="post">
+  <div class="form-group">
+    <label for="venue">Add a Venue:</label>
+    <input class="form-control" type="text" name="name" placeholder="name e.g. Circle House">
+    <button class="btn btn-primary btn-sm" name="button">Add Venue</button>
+</form>
+
+<% if @venues.empty? %>
+    <h3>No Venues!</h3>
+  <% else %>
+    <ul>
+      <% @venues.each do |venue| %>
+      <li>
+        <form class="form-inline" action="/venues/delete/<%=venue.id%>" method="post">
+          <label for=""><a href="venues/<%=venue.id%>"><%= venue.location %></a></label>
+          <input type="hidden" name="_method" value="delete">
+          <button class="glyphicon glyphicon-remove" name="delete"></button>
+        </form>
+      </li>
+      <% end %>
+    </ul>
+    <% end %>
