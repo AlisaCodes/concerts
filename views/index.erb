@@ -1,0 +1,24 @@
+<h1>Organize Your Bands</h1>
+
+
+<form action="/bands" method="post">
+  <div class="form-group">
+    <input class="form-control" type="text" name="name" placeholder="name e.g. Sir Mix A Lot">
+    <button class="btn btn-primary btn-sm" name="button">Add Band</button>
+</form>
+
+    <% if @bands.empty? %>
+        <h3>No bands!</h3>
+      <% else %>
+        <ul>
+          <% @bands.each do |band| %>
+          <li>
+            <form class="form-inline" action="/bands/delete/<%=band.id%>" method="post">
+              <label for=""><a href="bands/<%=band.id%>"><%= band.name %></a></label>
+              <input type="hidden" name="_method" value="delete">
+              <button class="glyphicon glyphicon-remove" name="delete"></button>
+            </form>
+          </li>
+          <% end %>
+        </ul>
+      <% end %>
